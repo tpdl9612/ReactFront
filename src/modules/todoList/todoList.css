@@ -1,0 +1,13 @@
+.done {
+    text-decoration: line-through;
+    color: #99999999;
+}
+
+
+.remove{
+    color: red;
+}
+
+.TodoItem {
+    cursor: pointer;
+}
