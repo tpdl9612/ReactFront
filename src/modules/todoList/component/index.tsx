@@ -18,14 +18,14 @@ const TodoList = () => {
     const [todos, setTodos] = React.useState(initialState)
     const inputEl = React.useRef<HTMLInputElement>(null)
     React.useEffect(()=> {
-        
+
     })
     
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
         setTodos(
             [...todos,{
-                id:4,
+                id:Math.max(...todos.map(todo => todo.id)) + 1,   // TODO: hard coding
                 text: String(inputEl.current?.value),
                 done: false
             }
@@ -44,20 +44,7 @@ const TodoList = () => {
     }
     return (
         <div>
-            <h2>Todo List ({todos.length}개)</h2>
-            <form onSubmit={onSubmit}>
-                <input 
-                placeholder='할 일을 입력하세요'
-                ref={inputEl}
-                type="text" />
-            </form>
-            <ul>{todos.map(todo => 
-                <li key={todo.id} className='TodoItem'>
-                    <span onClick={onToggle(todo.id)}
-                    className={todo.done ? 'done' :''}>{todo.text}</span>
-                    <span onClick={onRemove(todo.id)} className='remove'>(X)</span>
-                </li>)}
-            </ul>
+            
         </div>
     )
 }
