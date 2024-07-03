@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import { link } from 'fs';
-import axios from 'axios';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ArticleHome from './views/article/main';
+import ArticleWrite from './views/article/write';
+import ArticleDetail from './views/article/detail';
+import './App.css';
+
+
 
 
 
@@ -10,14 +14,15 @@ function App() {
 
 
   return (
+    <Router>
     <Routes>
       <Route>
-        <Route path="/question" element={<ArticleHome />} />
-        <Route path="/question/write" element={<ArticleWrite />} />
-        <Route path="/question/detail/:questionId" element={<ArticleDetail />} />
-        <Route path="/question/update/:questionId" element={<ArticleUpdate />} />
+        <Route path="/" element={<ArticleHome />} />
+        <Route path="/article/write" element={<ArticleWrite />} />
+        <Route path="/article/detail/:articleId" element={<ArticleDetail />} />
       </Route>
     </Routes>
+    </Router>
     // <div className="App">
       
     // </div>

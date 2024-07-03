@@ -1,6 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "target": "es5",
+    "paths": {
+      "apis/*": ["apis/*"],
+      "stores/*": ["stores/*"],
+      "types/*": ["types/*"]
+    },
+    
     "lib": [
       "dom",
       "dom.iterable",

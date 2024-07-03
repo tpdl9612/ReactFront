@@ -10,8 +10,8 @@ import { ResponseDto } from './response';
 // };
 
 const DOMAIN = 'http://localhost:8088';
-const API_DOMAIN = `${DOMAIN}/api/vi`;
-const GET_ALL_ARTICLE_URL = () => `${API_DOMAIN}/article`;
+const API_DOMAIN = `${DOMAIN}/api/v1`;
+const GET_ALL_ARTICLE_URL = () => `${API_DOMAIN}/`;
 const POST_ARTICLE_URL = () => `${API_DOMAIN}/article/write`;
 const GET_ARTICLE_URL = (articleId: number | string | undefined) => `${API_DOMAIN}/article/detail/${articleId}`;
 const DELETE_ARTICLE_URL = (articleId: number | string | undefined) => `${API_DOMAIN}/article/delete/${articleId}`;
