@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ArticleHome from './views/article/main';
 import ArticleWrite from './views/article/write';
 import ArticleDetail from './views/article/detail';
+import ArticleUpdate from './views/article/update';
 import './App.css';
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<ArticleHome />} />
         <Route path="/article/write" element={<ArticleWrite />} />
         <Route path="/article/detail/:articleId" element={<ArticleDetail />} />
+        <Route path="/article/update/:articleId" element={<ArticleUpdate />} />
       </Route>
     </Routes>
     </Router>

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse} from 'axios';
 import { ResponseBody } from '../types';
-import { DeleteArticleResponseDto, GetAllArticleResponseDto, GetArticleResponseDto, PostArticleResponseDto } from "./response/article";
-import { PostArticleRequestDto } from "./request/article";
+import { PatchArticleResponseDto, DeleteArticleResponseDto, GetAllArticleResponseDto, GetArticleResponseDto, PostArticleResponseDto } from "./response/article";
+import { PatchArticleRequestDto, PostArticleRequestDto } from "./request/article";
 import { ResponseDto } from './response';
 
 // const responseHandler = <T>(response: AxiosResponse<any, any>) => {
@@ -15,6 +15,7 @@ const GET_ALL_ARTICLE_URL = () => `${API_DOMAIN}/`;
 const POST_ARTICLE_URL = () => `${API_DOMAIN}/article/write`;
 const GET_ARTICLE_URL = (articleId: number | string | undefined) => `${API_DOMAIN}/article/detail/${articleId}`;
 const DELETE_ARTICLE_URL = (articleId: number | string | undefined) => `${API_DOMAIN}/article/delete/${articleId}`;
+const PATCH_ARTICLE_URL = (articleId: number | string | undefined) => `${API_DOMAIN}/article/update/${articleId}`;
 
 export const getAllArticleRequest = async () => {
     const result = await axios.get(GET_ALL_ARTICLE_URL())
@@ -71,3 +72,17 @@ export const deleteArticleRequest = async (articleId: number | string) => {
         });
     return result;
 };
+
+export const patchArticleRequest = async (articleId: number | string | undefined, requestBody: PatchArticleRequestDto) => {
+    const result = await axios.patch(PATCH_ARTICLE_URL(articleId), requestBody)
+        .then(response => {
+            const responseBody: PatchArticleResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            if (!error.response) return null;
+            const responseBody: ResponseDto = error.response.data;
+            return responseBody;
+        })
+    return result;
+}

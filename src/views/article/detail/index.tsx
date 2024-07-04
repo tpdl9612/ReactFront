@@ -15,9 +15,8 @@ const ArticleDetail: React.FC = () => {
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const navigator = useNavigate();
-  const [deletingArticleId, setDeletingArticleId] = useState<number | null>(
-    null
-  );
+  const [showModal, setShowModal] = useState(false);
+  const [deletingArticleId, setDeletingArticleId] = useState<number | null>(null);
   const [content, setContent] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -42,9 +41,9 @@ const ArticleDetail: React.FC = () => {
     fetchQuestion();
   }, [articleId]);
 
-  const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setContent(event.target.value);
-  };
+  // const handleContentChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setContent(event.target.value);
+  // };
 
   const updatePostClickHandler = (articleId: number | string | undefined) => {
     if (!articleId) return;
@@ -97,12 +96,23 @@ const ArticleDetail: React.FC = () => {
       <div className="detail-buttons">
         <div className="button" onClick={() => navigator("/")}>목록</div>
         <div className="button" onClick={() => updatePostClickHandler(articleId)}>수정</div>
-        <div className="button" onClick={() => deletePostClickHandler(articleId)}>삭제</div>
+        <div className="button" onClick={() => setShowModal(true)}>삭제</div>
       </div>
     </div>
+    {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>정말로 삭제하시겠습니까?</p>
+            <div className="delete-buttons">
+              <button className="button" onClick={() => setShowModal(false)}>취소</button>
+              <button className="button-delete" onClick={() => deletePostClickHandler(articleId)}>확인</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-    
-    // <div className="article-detail-container">
+    // table 방식
+    // <div className="article-detail-container"> 
     //   <h2> 상세보기</h2>
     //   <table>
     //     <tbody>
